@@ -44,6 +44,9 @@ public class Player_MovementController : MonoBehaviour
 
         // Get input actions
         input = InputHandler.instance.input;
+
+        //equip weapon
+        EquipWeapon(1);
     }
 
     //== On Update
@@ -69,6 +72,10 @@ public class Player_MovementController : MonoBehaviour
 
         // Handle jumping
         HandleJumping();
+
+        //handle weapon
+        SwitchWeapon();
+
     }
     //== On Fixed Update
     private void FixedUpdate()
@@ -219,4 +226,54 @@ public class Player_MovementController : MonoBehaviour
         // Return default
         return false;
     }
+
+
+    //---------------------------------- Weapon Implementation -------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
+
+    public GameObject weapon1;
+    public GameObject weapon2;
+    private int currentWep = 1;
+
+
+    //weapon switch handler
+    public void SwitchWeapon()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        //if more weapons are to be added this will need to be changed
+        if (scroll > 0f || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            EquipWeapon(1);
+        }
+        else if (scroll < 0f || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipWeapon(2);
+        }
+
+
+    }
+
+    void EquipWeapon(int weaponNum)
+    {
+        currentWep = weaponNum;
+
+        weapon1.SetActive(weaponNum == 1);
+        weapon2.SetActive(weaponNum == 2);
+
+        currentWeaponScript = (weaponNum == 1)
+        ? weapon1.GetComponent<WeaponBase>()
+        : weapon2.GetComponent<WeaponBase>();
+
+
+
+        Debug.Log("Equipped Weapon " + weaponNum);
+    }
+
+
+    private WeaponBase currentWeaponScript;
+
+    
+    //---------------------------------- Player interaction ----------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
 }
