@@ -46,7 +46,7 @@ public class Player_MovementController : MonoBehaviour
         input = InputHandler.instance.input;
 
         //equip weapon
-        EquipWeapon(1);
+        //EquipWeapon(1);
     }
 
     //== On Update
@@ -239,19 +239,15 @@ public class Player_MovementController : MonoBehaviour
     //weapon switch handler
     public void SwitchWeapon()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-
         //if more weapons are to be added this will need to be changed
-        if (scroll > 0f || Input.GetKeyDown(KeyCode.Alpha1))
+        if (input.Player.Weapon1.WasPressedThisFrame())
         {
             EquipWeapon(1);
         }
-        else if (scroll < 0f || Input.GetKeyDown(KeyCode.Alpha2))
+        else if (input.Player.Weapon2.WasPressedThisFrame())
         {
             EquipWeapon(2);
         }
-
-
     }
 
     void EquipWeapon(int weaponNum)
