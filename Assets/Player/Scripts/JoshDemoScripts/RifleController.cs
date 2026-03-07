@@ -2,26 +2,62 @@ using UnityEngine;
 
 public class RifleController : MonoBehaviour
 {
-
-
+    [Header("References")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] ParticleSystem muzzleFlash;
-    GameObject bulletHole;
+    [SerializeField] Camera cam;
+    [SerializeField] GameObject bulletHole;
 
-    float fireRate = 0.1f;
+    [Header("Settings")]
+    [SerializeField] float fireRate = 0.1f;
+    [SerializeField] float fireRange = 300f;
+    [SerializeField] LayerMask hitMask;
 
+    bool canFire = true;
+    FPS_Control input;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        input = new FPS_Control();
+        input.Player_map.Enable();
+
+        // Bind fire input
+        input.Player_map.Fire.performed += ctx => TryFire();
     }
 
-    // Update is called once per frame
-    void Update()
+    void TryFire()
     {
-        
+        if (!canFire)
+            return;
+
+        Fire();
+        canFire = false;
+        Invoke(nameof(ResetFire), fireRate);
+    }
+
+    void Fire()
+    {
+        // Effects
+        audioSource.Play();
+        muzzleFlash.Play();
+
+        // Raycast
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, fireRange, hitMask))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                Destroy(hit.collider.gameObject);
+            }
+            else
+            {
+                Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+            }
+        }
+    }
+
+    void ResetFire()
+    {
+        muzzleFlash.Stop();
+        canFire = true;
     }
 }
