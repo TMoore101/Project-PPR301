@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3556534382579848723}
   - component: {fileID: 8378614893070529297}
   - component: {fileID: 1206295533447151983}
-  m_Layer: 0
+  - component: {fileID: 7818765649860604609}
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,6 +382,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &7818765649860604609
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654877416089286694}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.0000002, y: 2, z: 0.075}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.5, y: -0.5, z: -0.37500003}
+  m_TimeToStationary: 0.5
 --- !u!1 &831078790256568140
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +409,7 @@ GameObject:
   - component: {fileID: 7310577290348657893}
   - component: {fileID: 3579614522483227087}
   - component: {fileID: 817760904805561199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door - Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,11 +448,13 @@ MonoBehaviour:
   openDistance: 2.75
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   isLocked: 0
   lockLightModel: {fileID: 2695760935981412450}
   unlockedMat: {fileID: 2100000, guid: 852bd66309c44684da67868361d67f84, type: 2}
   lockedMat: {fileID: 2100000, guid: c2a06a840b522c6489c1b32f39e2a4ac, type: 2}
+  isOpening: 0
+  isForcedOpen: 0
 --- !u!65 &817760904805561199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -471,7 +490,7 @@ GameObject:
   - component: {fileID: 2976994175009251533}
   - component: {fileID: 3671513405599015143}
   - component: {fileID: 4821524033058811144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lock Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1392,7 +1411,7 @@ GameObject:
   - component: {fileID: 1283751718429691108}
   - component: {fileID: 6656384213916500781}
   - component: {fileID: 8696090732286812207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

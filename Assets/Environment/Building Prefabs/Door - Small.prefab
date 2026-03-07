@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1025164118438436648}
   - component: {fileID: 706108607918646100}
   - component: {fileID: 8455600446766830802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door - Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,11 +50,13 @@ MonoBehaviour:
   openDistance: 2.75
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   isLocked: 0
   lockLightModel: {fileID: 7543214496325447710}
   unlockedMat: {fileID: 2100000, guid: 852bd66309c44684da67868361d67f84, type: 2}
   lockedMat: {fileID: 2100000, guid: c2a06a840b522c6489c1b32f39e2a4ac, type: 2}
+  isOpening: 0
+  isForcedOpen: 0
 --- !u!65 &8455600446766830802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74,8 +76,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 4, z: 5}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &6257876977753698847
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ GameObject:
   - component: {fileID: 3433733602416907582}
   - component: {fileID: 396087990490319591}
   - component: {fileID: 6007049624698926270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5490,7 +5492,7 @@ GameObject:
   - component: {fileID: 6721622000384052282}
   - component: {fileID: 4803513289551364900}
   - component: {fileID: 7154609785185182142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lock Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6411,7 +6413,8 @@ GameObject:
   - component: {fileID: 1810566934339114971}
   - component: {fileID: 7891612406076509902}
   - component: {fileID: 7175347750191042661}
-  m_Layer: 0
+  - component: {fileID: 7426305652697126596}
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6778,3 +6781,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &7426305652697126596
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915650343710247008}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1.5000001, z: 0.075}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.75000006, y: -1, z: -0.37500003}
+  m_TimeToStationary: 0.5

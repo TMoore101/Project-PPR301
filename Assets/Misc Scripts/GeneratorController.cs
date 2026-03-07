@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GeneratorController : MonoBehaviour
 {
@@ -67,5 +68,8 @@ public class GeneratorController : MonoBehaviour
 
             yield return null;
         }
+
+        // Load demo failed scene
+        SceneManager.LoadScene(SceneManager.GetSceneByName("DemoFailed").buildIndex);
     }
 }

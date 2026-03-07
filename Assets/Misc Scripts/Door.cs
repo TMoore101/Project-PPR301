@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : MonoBehaviour
 {
@@ -41,6 +42,12 @@ public class Door : MonoBehaviour
     //== On Update
     private void Update()
     {
+        // Get door model
+        Transform doorModel = transform.GetChild(0);
+
+        // Update door obstacle for navmesh
+        doorModel.GetComponent<NavMeshObstacle>().carving = isLocked;
+
         // If the lock materials and lock light model exists, set lock material
         if (lockLightModel != null && lockedMat != null && unlockedMat != null)
             lockLightModel.GetComponent<MeshRenderer>().material = isLocked ? lockedMat : unlockedMat;
@@ -49,8 +56,8 @@ public class Door : MonoBehaviour
         Vector3 targetPos = isOpening ? openPos : closedPos;
 
         // Move door towards target position
-        transform.GetChild(0).position = Vector3.MoveTowards(
-            transform.GetChild(0).position,
+        doorModel.position = Vector3.MoveTowards(
+            doorModel.position,
             targetPos,
             moveSpeed * Time.deltaTime
         );
