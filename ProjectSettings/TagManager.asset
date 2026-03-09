@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Building Light
   - MissionManager
+  - FxTemporaire
+  - Game Manager
+  - Enemy
+  - Generator
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - AI
   - IgnoreNavmeshBake
   - Terminals
-  - 
-  - 
+  - Bullet
+  - PlayerWeapon
   - 
   - 
   - 

@@ -13,6 +13,7 @@ public class GeneratorController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI selfDestructTimerText;
     [SerializeField] private float selfDestructTime;
     private float currentSelfDestructTime;
+    [SerializeField] private GameObject escapeHatch;
 
     //== On Start
     private void Start()
@@ -48,6 +49,9 @@ public class GeneratorController : MonoBehaviour
             selfDestructTimerText.gameObject.SetActive(true);
             // Start self destruct coroutine
             StartCoroutine(SelfDestruct());
+
+            // Enable escape hatch
+            escapeHatch.SetActive(true);
         } 
     }
 

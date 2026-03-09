@@ -40,12 +40,15 @@ public class BossSpawner : MonoBehaviour
         // If other object is not the player, return
         if (other.gameObject.tag != "Player") return;
 
-        // Get mission manager
-        MissionManager missionManager = GameObject.FindGameObjectWithTag("MissionManager").GetComponent<MissionManager>();
-        // Move to next marker
-        missionManager.NextMarker();
+        if (!isActivated)
+        {
+            // Get mission manager
+            MissionManager missionManager = GameObject.FindGameObjectWithTag("MissionManager").GetComponent<MissionManager>();
+            // Move to next marker
+            missionManager.NextMarker();
 
-        // Activate platform
-        isActivated = true;
+            // Activate platform
+            isActivated = true;
+        }
     }
 }
