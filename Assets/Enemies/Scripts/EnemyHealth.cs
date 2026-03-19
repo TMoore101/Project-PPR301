@@ -8,8 +8,9 @@ public class EnemyHealth : MonoBehaviour
     //== Take Damage
     public void TakeDamage(float damage)
     {
-        // Start chasing player
-        GetComponent<GuardRobot>().currentState = EnemyState.Chasing;
+        // If activate, start chasing player
+        if (GetComponent<GuardRobot>().isActive)
+            GetComponent<GuardRobot>().currentState = EnemyState.Chasing;
 
         // Find all nearby enemies
         Collider[] hits = Physics.OverlapSphere(transform.position, 20);

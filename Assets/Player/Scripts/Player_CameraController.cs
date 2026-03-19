@@ -21,6 +21,7 @@ public class Player_CameraController : MonoBehaviour
     // Data variables
     private float yaw;
     private float pitch;
+    [HideInInspector] public float addedPitch;
 
     //== On Start
     private void Start()
@@ -43,12 +44,15 @@ public class Player_CameraController : MonoBehaviour
         // Apply sensitivity
         yaw += lookDelta.x * mouseSensitivity;
         pitch -= lookDelta.y * mouseSensitivity;
+        pitch += addedPitch * Time.deltaTime * 25;
 
         // Clamp pitch
         pitch = Mathf.Clamp(pitch, pitchClampMin, pitchClampMax);
 
         // Rotate camera & player
         playerTransform.localRotation = Quaternion.Euler(0, yaw, 0);
-        transform.localRotation = Quaternion.Euler(pitch, 0, 0);
+        transform.GetChild(0).localRotation = Quaternion.Euler(pitch, 0, 0);
+
+        if (addedPitch < 0) addedPitch -= addedPitch * Time.deltaTime * 25;
     }
 }

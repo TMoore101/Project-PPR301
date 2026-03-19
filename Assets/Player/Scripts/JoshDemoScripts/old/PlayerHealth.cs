@@ -61,6 +61,6 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Player_MovementController>().enabled = false;
 
         // Load demo complete scene
-        SceneManager.LoadScene(SceneManager.GetSceneByName("DemoFailed").buildIndex);
+        SceneManager.LoadScene(2);
     }
 }

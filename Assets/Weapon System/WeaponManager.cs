@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
     //Raycast ignore layer
     public LayerMask ignoreLayer;
 
-    //Fire weapon function  | TODO: add recoil to currentWeapon
+    //Fire weapon function
     public void Fire(Transform bulletSpawn, Transform recoilController, Weapons currentWeaponData, Transform eyeSight, Material bulletMat, bool isPlayer, Player_CameraController cameraController)
     {
         //Fire a bullet for the current weapon's bullet count amount of times
@@ -44,7 +44,8 @@ public class WeaponManager : MonoBehaviour
             //Add force to the bullet by the dir variable * the bullet speed, using ForceMode.Impulse for immediate fixed speed
             bullet.GetComponent<Rigidbody>().AddForce(dir * currentWeaponData.bulletSpeed, ForceMode.Impulse);
 
-            //Recoil(recoilController, currentWeaponData, cameraController);
+            if (isPlayer)
+                Recoil(recoilController, currentWeaponData, cameraController);
 
             //Set the weapon to hasShot
             currentWeaponData.hasShot = true;
@@ -53,13 +54,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    ////Recoil function
-    //public void Recoil(Transform recoilController, Weapons currentWeaponData, Player_CameraController cameraController)
-    //{
-    //    recoilController.Rotate(new Vector3(-currentWeaponData.recoilAmount, 0, 0));
-
-    //    if (cameraController != null) { cameraController.MouseYSum += currentWeaponData.recoilAmount; }
-    //}
+    //Recoil function
+    public void Recoil(Transform recoilController, Weapons currentWeaponData, Player_CameraController cameraController)
+    {
+        // Rotate up by recoil amount
+        cameraController.addedPitch = -currentWeaponData.recoilAmount;
+    }
 
     //Aiming function
     public void Aim(GameObject currentWeapon, Transform weaponPosition, Transform adsPosition, Weapons currentWeaponData, bool isAiming, bool isPlayer)

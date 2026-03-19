@@ -30,7 +30,7 @@ public class Player_WeaponHandler : MonoBehaviour
     public Slider Heat;
     public Slider HeatCrosshair;
 
-    //Recoil stuff...
+    //Recoil variables
     public Player_CameraController cameraController;
 
     //Audio
@@ -106,14 +106,19 @@ public class Player_WeaponHandler : MonoBehaviour
         }
     }
 
+    //== On Update
     private void Update()
     {
-        //Cooldowns
+        // Cooldowns
         weaponManager.Cooldowns(weaponList);
+
+        // Rotate camera root down if recoiled
+        if (cameraController.transform.localRotation.eulerAngles.x > 0)
+            cameraController.transform.Rotate(new Vector3(1f * Time.deltaTime, 0, 0));
 
         if (currentWeapon)
         {
-            //Fire weapon
+            // Fire weapon
             if (currentWeaponData.fireMode == 1 && !currentWeaponData.isCooling && !currentWeaponData.hasShot && Time.timeScale != 0)
             {
                 if (input.Player.Shoot.IsPressed()) {
@@ -133,7 +138,7 @@ public class Player_WeaponHandler : MonoBehaviour
                 }
             }
 
-            //Aim weapon
+            // Aim weapon
             if (input.Player.Aim.IsPressed())
                 weaponManager.Aim(currentWeapon, weaponPosition, ADSPosition, currentWeaponData, true, true);
             else
