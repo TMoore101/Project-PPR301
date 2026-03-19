@@ -9,6 +9,9 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float health;
 
+    // Mission variables
+    [SerializeField] private DoorTerminal nextMissionTerminal;
+
     // UI variables
     [SerializeField] private TMP_Text nameField;
     [SerializeField] private Slider healthSlider;
@@ -39,5 +42,13 @@ public class BossHealth : MonoBehaviour
         // If health reached zero, destroy boss
         if (health <= 0)
             Destroy(gameObject);
+
+        // Get mission manager
+        MissionManager missionManager = GameObject.FindGameObjectWithTag("MissionManager").GetComponent<MissionManager>();
+        // Move to next marker
+        missionManager.NextMarker();
+
+        // Enable next mission terminal
+        nextMissionTerminal.enabled = true;
     }
 }
