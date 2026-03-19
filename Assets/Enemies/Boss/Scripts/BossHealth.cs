@@ -31,7 +31,7 @@ public class BossHealth : MonoBehaviour
     }
 
     //== Take Damage
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         // Take damage
         health -= damage;

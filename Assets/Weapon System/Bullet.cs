@@ -94,7 +94,12 @@ public class Bullet : MonoBehaviour
         else
         {
             if (other.gameObject.tag == "Enemy") {
-                other.transform.parent.GetComponent<EnemyHealth>().TakeDamage(damage);
+                // If other has enemy health component, take enemy damage
+                if (other.transform.GetComponentInParent<EnemyHealth>() != null)
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(damage);
+                // If other has boss health component, take boss damage
+                if (other.transform.GetComponentInParent<BossHealth>() != null)
+                    other.transform.GetComponentInParent<BossHealth>().TakeDamage(damage);
                 GameObject hitParticle = Instantiate(HitEnemy);
                 hitParticle.transform.position = hitPos;
                 hitParticle.transform.rotation = rotation;
