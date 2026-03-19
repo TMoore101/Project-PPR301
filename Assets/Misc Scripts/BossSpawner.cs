@@ -7,6 +7,7 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float openDistance;
     [SerializeField] private Transform platform;
+    [SerializeField] private Transform bossHealthTransform;
     // State variables
     private Vector3 loweredPos;
     private Vector3 raisedPos;
@@ -46,6 +47,9 @@ public class BossSpawner : MonoBehaviour
             MissionManager missionManager = GameObject.FindGameObjectWithTag("MissionManager").GetComponent<MissionManager>();
             // Move to next marker
             missionManager.NextMarker();
+
+            // Enable boss health transform
+            bossHealthTransform.gameObject.SetActive(true);
 
             // Activate platform
             isActivated = true;
