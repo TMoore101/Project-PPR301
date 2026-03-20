@@ -15,6 +15,7 @@ public class BossHealth : MonoBehaviour
     // UI variables
     [SerializeField] private TMP_Text nameField;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject healthField;
 
     //== On Start
     private void Start()
@@ -54,7 +55,7 @@ public class BossHealth : MonoBehaviour
             nextMissionTerminal.enabled = true;
 
             // Disable health slider
-            healthSlider.enabled = false;
+            healthField.SetActive(false);
         }
     }
 }
