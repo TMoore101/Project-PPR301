@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +17,7 @@ public enum EnemyState
 public class GuardRobot : MonoBehaviour
 {
     // General variables
-    [SerializeField] private EnemyState currentState;
+    [SerializeField] public EnemyState currentState;
     private Vector3 spawnPosition;
     private NavMeshAgent agent;
     [SerializeField] private float rotationSpeed;
@@ -38,7 +37,7 @@ public class GuardRobot : MonoBehaviour
     [SerializeField] private Material activatedMat;
     [SerializeField] private Material deactivatedMat;
     private bool deactivationComplete;
-    private bool isActive;
+    public bool isActive;
 
     //== On Start
     private void Start()
@@ -107,6 +106,9 @@ public class GuardRobot : MonoBehaviour
                 // Set stopping distance
                 agent.stoppingDistance = stopDistance;
 
+                // Get shooting component
+                EnemyShooting enemyShooting = GetComponent<EnemyShooting>();
+
                 // If the distance to the player is greater than the detection radius, wait until lose target time to start patrolling again
                 if (distanceToPlayer > detectionRadius)
                 {
@@ -119,6 +121,20 @@ public class GuardRobot : MonoBehaviour
                         // Set current state to waiting
                         currentState = EnemyState.Waiting;
                         waitTimer = Random.Range(minWaitTime, maxwaitTime);
+
+                        // Stop shooting
+                        enemyShooting.Shoot = false;
+                    }
+                }
+
+                // Raycast forward
+                RaycastHit hit;
+                if (Physics.Raycast(new Ray(transform.position, transform.forward), out hit, 100f))
+                {
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        // Start shooting
+                        enemyShooting.Shoot = true;
                     }
                 }
 
@@ -143,15 +159,12 @@ public class GuardRobot : MonoBehaviour
                 {
                     isActive = true;
                     // Activate agent
-                    //agent.enabled = true;
                     MeshRenderer meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
                     Material[] materials = meshRenderer.materials;
+                    transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
                     // Set headset material to activated material
                     materials[1] = activatedMat;
                     meshRenderer.materials = materials;
-                    //// Set current state to waiting
-                    //currentState = EnemyState.Waiting;
-                    //waitTimer = Random.Range(minWaitTime, maxwaitTime);
                     StartCoroutine(ActivateAgent());
                 }
                 break;
