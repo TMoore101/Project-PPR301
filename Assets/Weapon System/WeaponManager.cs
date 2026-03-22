@@ -110,7 +110,7 @@ public class WeaponManager : MonoBehaviour
                         Destroy(currentWeapon);
                         //Create weapon
                         weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                        weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                        weaponHandler.currentWeapon.transform.Rotate(Vector3.up, -90);
                         weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                         //Set new weapon data
                         weaponHandler.currentWeaponData = weapon;
@@ -139,7 +139,7 @@ public class WeaponManager : MonoBehaviour
                                 Destroy(currentWeapon);
                                 //Create weapon
                                 weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, -90);
                                 weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                 //Set new weapon data
                                 weaponHandler.currentWeaponData = weapon;
@@ -167,7 +167,7 @@ public class WeaponManager : MonoBehaviour
                                 Destroy(currentWeapon);
                                 //Create weapon
                                 weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, -90);
                                 weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                 //Set new weapon data
                                 weaponHandler.currentWeaponData = weapon;
@@ -197,7 +197,7 @@ public class WeaponManager : MonoBehaviour
                                     Destroy(currentWeapon);
                                     //Create weapon
                                     weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                                    weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                                    weaponHandler.currentWeapon.transform.Rotate(Vector3.up, -90);
                                     weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                     //Set new weapon data
                                     weaponHandler.currentWeaponData = weapon;
@@ -228,7 +228,7 @@ public class WeaponManager : MonoBehaviour
                         Destroy(currentWeapon);
                         //Create weapon
                         weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                        weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                        weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90.2f);
                         weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                         //Set new weapon data
                         weaponHandler.currentWeaponData = weapon;
@@ -257,7 +257,7 @@ public class WeaponManager : MonoBehaviour
                                 Destroy(currentWeapon);
                                 //Create weapon
                                 weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90.2f);
                                 weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                 //Set new weapon data
                                 weaponHandler.currentWeaponData = weapon;
@@ -285,7 +285,7 @@ public class WeaponManager : MonoBehaviour
                                 Destroy(currentWeapon);
                                 //Create weapon
                                 weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
+                                weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90.2f);
                                 weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                 //Set new weapon data
                                 weaponHandler.currentWeaponData = weapon;
@@ -314,9 +314,9 @@ public class WeaponManager : MonoBehaviour
                                     //Destroy the current weapon
                                     Destroy(currentWeapon);
                                     //Create weapon
-                        weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                        weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90);
-                        weaponHandler.currentWeapon.transform.position = weaponPosition.position;
+                                    weaponHandler.currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
+                                    weaponHandler.currentWeapon.transform.Rotate(Vector3.up, 90.2f);
+                                    weaponHandler.currentWeapon.transform.position = weaponPosition.position;
                                     //Set new weapon data
                                     weaponHandler.currentWeaponData = weapon;
                                     weaponHandler.weaponIndex = Array.IndexOf(weaponList.secondaryWeapons, weapon);

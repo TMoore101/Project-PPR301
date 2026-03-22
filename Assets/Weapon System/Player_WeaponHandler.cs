@@ -65,7 +65,7 @@ public class Player_WeaponHandler : MonoBehaviour
                 {
                     //Create weapon
                     currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                    currentWeapon.transform.Rotate(Vector3.up, 90);
+                    currentWeapon.transform.Rotate(Vector3.up, -90);
                     currentWeapon.transform.position = weaponPosition.position;
                     //Set weapon data
                     currentWeaponData = weapon;
@@ -88,7 +88,7 @@ public class Player_WeaponHandler : MonoBehaviour
                 {
                     //Create weapon
                     currentWeapon = Instantiate(weapon.weaponPrefab, eyeSight, false);
-                    currentWeapon.transform.Rotate(Vector3.up, 90);
+                    currentWeapon.transform.Rotate(Vector3.up, 90.2f);
                     currentWeapon.transform.position = weaponPosition.position;
                     //Set weapon data
                     currentWeaponData = weapon;

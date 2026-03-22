@@ -137,9 +137,10 @@ public class GuardRobot : MonoBehaviour
                         enemyShooting.Shoot = true;
                     }
                 }
-
+                 
                 // Move to player
-                agent.SetDestination(player.position);
+                if (agent.isOnNavMesh)
+                    agent.SetDestination(player.position);
                 break;
             // Deactivated
             case EnemyState.Deactivated:
