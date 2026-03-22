@@ -50,7 +50,7 @@ public class EscapeHatch : MonoBehaviour
         if (playerInRange && input.Player.Interact.WasPressedThisFrame())
         {
             // Load demo complete scene
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

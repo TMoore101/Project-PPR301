@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     //== On Update
     private void Update()
     {
-        // If player presses pause key, quit application
-        if (input.Player.Pause.WasPressedThisFrame())
-            Application.Quit();
+        //// If player presses pause key, quit application
+        //if (input.Player.Pause.WasPressedThisFrame())
+        //    Application.Quit();
     }
 }

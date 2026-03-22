@@ -74,6 +74,6 @@ public class GeneratorController : MonoBehaviour
         }
 
         // Load demo failed scene
-        SceneManager.LoadScene(SceneManager.GetSceneByName("DemoFailed").buildIndex);
+        SceneManager.LoadScene(3);
     }
 }
