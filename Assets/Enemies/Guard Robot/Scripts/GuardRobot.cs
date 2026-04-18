@@ -17,6 +17,7 @@ public enum EnemyState
 public class GuardRobot : MonoBehaviour
 {
     // General variables
+    [SerializeField] private GameObject model;
     [SerializeField] public EnemyState currentState;
     private Vector3 spawnPosition;
     private NavMeshAgent agent;
@@ -150,7 +151,7 @@ public class GuardRobot : MonoBehaviour
                     // Mark deactivation as complete
                     deactivationComplete = true;
                     // Set headset material to deactivated material
-                    transform.GetChild(0).GetComponent<MeshRenderer>().materials[1] = deactivatedMat;
+                    model.GetComponent<MeshRenderer>().materials[2] = deactivatedMat;
                 }
 
                 // Get distance to player
@@ -160,11 +161,11 @@ public class GuardRobot : MonoBehaviour
                 {
                     isActive = true;
                     // Activate agent
-                    MeshRenderer meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+                    MeshRenderer meshRenderer = model.GetComponent<MeshRenderer>();
                     Material[] materials = meshRenderer.materials;
-                    transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+                    model.GetComponent<Rigidbody>().isKinematic = false;
                     // Set headset material to activated material
-                    materials[1] = activatedMat;
+                    materials[2] = activatedMat;
                     meshRenderer.materials = materials;
                     StartCoroutine(ActivateAgent());
                 }
