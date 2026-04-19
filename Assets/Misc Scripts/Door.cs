@@ -25,14 +25,14 @@ public class Door : MonoBehaviour
         if (!isForcedOpen)
         {
             // Set closed and open positions
-            closedPos = transform.GetChild(0).position;
+            closedPos = transform.GetChild(0).Find("doorModel").position;
             openPos = closedPos + Vector3.up * openDistance;
         }
         // Else, set closed and open positions using current position as open
         else
         {
             // Set closed and open positions
-            openPos = transform.GetChild(0).position;
+            openPos = transform.GetChild(0).Find("doorModel").position;
             closedPos = openPos + Vector3.down * openDistance;
             // Mark as opening
             isOpening = true;
@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
     private void Update()
     {
         // Get door model
-        Transform doorModel = transform.GetChild(0);
+        Transform doorModel = transform.GetChild(0).Find("doorModel");
 
         // Update door obstacle for navmesh
         doorModel.GetComponent<NavMeshObstacle>().carving = isLocked;

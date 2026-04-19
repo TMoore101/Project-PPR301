@@ -4,6 +4,8 @@ public class GeneratorBattery : MonoBehaviour
 {
     // General variables
     public float health = 100;
+    [SerializeField] private MeshFilter generatorMesh;
+    [SerializeField] private Mesh destroyedMesh;
     [SerializeField] private ParticleSystem explosionFX;
 
     //== On Update
@@ -14,6 +16,8 @@ public class GeneratorBattery : MonoBehaviour
         {
             // Hide game object
             gameObject.SetActive(false);
+            // Swap to destroyed mesh
+            generatorMesh.mesh = destroyedMesh;
 
             // Player explosion
             explosionFX.Play();
