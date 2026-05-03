@@ -33,6 +33,8 @@ public class Bullet : MonoBehaviour
     private Vector3 previousPos;
     private Rigidbody rb;
 
+    [SerializeField] private LayerMask collisionMask;
+
     //== On Start
     private void Start()
     {
@@ -56,7 +58,7 @@ public class Bullet : MonoBehaviour
         {
             // Raycast forward
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, distance, collisionMask))
             {
                 HandleHit(hit.collider, hit.point, hit.normal);
                 return;

@@ -171,6 +171,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a19c4975858e62d43ad47c20f1bd3413, type: 3}
   shipHitNoises: []
   audioSource: {fileID: 2538317335242480675}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 8161
 --- !u!82 &2538317335242480675
 AudioSource:
   m_ObjectHideFlags: 0
