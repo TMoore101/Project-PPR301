@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class WeaponManager : MonoBehaviour
 
     //Raycast ignore layer
     public LayerMask ignoreLayer;
+
+    // Icon variables
+    [SerializeField] private RawImage currentWeaponIcon;
+    [SerializeField] private RawImage nextWeaponIcon;
 
     //Fire weapon function
     public void Fire(Transform bulletSpawn, Transform recoilController, Weapons currentWeaponData, Transform eyeSight, Material bulletMat, bool isPlayer, Player_CameraController cameraController)
@@ -118,6 +123,9 @@ public class WeaponManager : MonoBehaviour
                         weaponHandler.bulletSpawn = weaponHandler.currentWeapon.transform.GetChild(0);
 
                         weaponHandler.currentWeaponType = 1;
+
+                        currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                        nextWeaponIcon.texture = weaponList.secondaryWeapons[0].weaponIcon;
                         return;
                     }
                 }
@@ -147,6 +155,9 @@ public class WeaponManager : MonoBehaviour
                                 weaponHandler.bulletSpawn = weaponHandler.currentWeapon.transform.GetChild(0);
 
                                 weaponHandler.currentWeaponType = 1;
+
+                                currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                                nextWeaponIcon.texture = weaponList.secondaryWeapons[0].weaponIcon;
                                 return;
                             }
                         }
@@ -178,6 +189,9 @@ public class WeaponManager : MonoBehaviour
                                 foundWeapon = true;
 
                                 weaponHandler.currentWeaponType = 1;
+
+                                currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                                nextWeaponIcon.texture = weaponList.secondaryWeapons[0].weaponIcon;
                                 return;
                             }
                         }
@@ -236,6 +250,9 @@ public class WeaponManager : MonoBehaviour
                         weaponHandler.bulletSpawn = weaponHandler.currentWeapon.transform.GetChild(0);
 
                         weaponHandler.currentWeaponType = 2;
+
+                        currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                        nextWeaponIcon.texture = weaponList.primaryWeapons[0].weaponIcon;
                         return;
                     }
                 }
@@ -265,6 +282,9 @@ public class WeaponManager : MonoBehaviour
                                 weaponHandler.bulletSpawn = weaponHandler.currentWeapon.transform.GetChild(0);
 
                                 weaponHandler.currentWeaponType = 2;
+
+                                currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                                nextWeaponIcon.texture = weaponList.primaryWeapons[0].weaponIcon;
                                 return;
                             }
                         }
@@ -296,6 +316,9 @@ public class WeaponManager : MonoBehaviour
                                 foundWeapon = true;
 
                                 weaponHandler.currentWeaponType = 2;
+
+                                currentWeaponIcon.texture = weaponHandler.currentWeaponData.weaponIcon;
+                                nextWeaponIcon.texture = weaponList.primaryWeapons[0].weaponIcon;
                                 return;
                             }
                         }
@@ -458,6 +481,7 @@ public class Weapons
     public GameObject weaponPrefab;
     public GameObject bulletPrefab;
     public bool unlocked;
+    public Texture weaponIcon;
 
     //Weapon specs
     [Header("Weapon Specs")]
@@ -497,6 +521,7 @@ public class Weapons
         this.weaponPrefab = other.weaponPrefab;
         this.bulletPrefab = other.bulletPrefab;
         this.unlocked = other.unlocked;
+        this.weaponIcon = other.weaponIcon;
 
         this.fireMode = other.fireMode;
         this.damage = other.damage;
