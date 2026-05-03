@@ -110,10 +110,20 @@ public class Bullet : MonoBehaviour
 
             else if (other.gameObject.tag == "Generator")
             {
-                other.GetComponent<GeneratorBattery>().health -= damage;
+                GeneratorBattery battery = other.GetComponent<GeneratorBattery>();
+                if (battery == null)
+                    battery = other.GetComponentInParent<GeneratorBattery>();
+
+                battery.health -= damage;
                 GameObject hitParticle = Instantiate(HitWall);
                 hitParticle.transform.position = hitPos;
                 hitParticle.transform.rotation = rotation;
+
+                Material batteryMat = battery.GetComponent<MeshRenderer>().material;
+                Color emission = batteryMat.GetColor("_EmissionColor");
+                emission.r += 0.2f;
+                emission.g -= 0.1f;
+                batteryMat.SetColor("_EmissionColor", emission);
 
                 audio.GetComponent<AudioSource>().clip = wallHitNoises[Random.Range(0, wallHitNoises.Length)];
             }
