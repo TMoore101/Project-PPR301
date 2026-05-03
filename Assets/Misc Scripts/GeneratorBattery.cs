@@ -7,6 +7,7 @@ public class GeneratorBattery : MonoBehaviour
     [SerializeField] private MeshFilter generatorMesh;
     [SerializeField] private Mesh destroyedMesh;
     [SerializeField] private ParticleSystem explosionFX;
+    [SerializeField] private AudioClip explosionSFX;
 
     //== On Update
     private void Update()
@@ -19,8 +20,10 @@ public class GeneratorBattery : MonoBehaviour
             // Swap to destroyed mesh
             generatorMesh.mesh = destroyedMesh;
 
-            // Player explosion
+            // Play explosion
             explosionFX.Play();
+            AudioSource.PlayClipAtPoint(explosionSFX, transform.position);
+            FindFirstObjectByType<CameraShake>().Shake(0.3f, 0.15f);
         }
     }
 }
