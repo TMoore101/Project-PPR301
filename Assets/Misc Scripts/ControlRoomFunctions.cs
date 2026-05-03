@@ -9,6 +9,8 @@ public class ControlRoomFunctions : MonoBehaviour
     // Light pulse variables
     [SerializeField] private float pulseAmount = 0.65f;
     [SerializeField] private float pulseSpeed = 3;
+    // Audio variables
+    [SerializeField] private AudioSource alarmAudioSource;
 
     //== Control Room Terminal Activated
     public void ControlRoomTerminalActivated()
@@ -37,6 +39,9 @@ public class ControlRoomFunctions : MonoBehaviour
 
         // Start pulsing lights
         StartCoroutine(PulseLights());
+
+        // Start alarm
+        alarmAudioSource.Play();
     }
 
     //== Pulse Lights Coroutine

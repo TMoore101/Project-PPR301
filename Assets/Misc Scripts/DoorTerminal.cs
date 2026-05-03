@@ -71,6 +71,9 @@ public class DoorTerminal : MonoBehaviour
             // Activated on terminal activated event
             if (onTerminalActivated != null)
                 onTerminalActivated?.Invoke();
+
+            // Play interact sound
+            GetComponent<AudioSource>().Play();
         }
 
         // If terminal is activated, count up

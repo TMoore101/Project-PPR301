@@ -488,6 +488,9 @@ public class Weapons
     public float coolingCDIncrease;
     public float rechargingSpeed = 1;
 
+    // Audio variables
+    public AudioClip[] fireSFX;
+
     public Weapons(Weapons other)
     {
         this.weaponName = other.weaponName;
@@ -515,5 +518,7 @@ public class Weapons
         this.coolingCDTimer = other.coolingCDTimer;
         this.coolingCDIncrease = other.coolingCDIncrease;
         this.rechargingSpeed = other.rechargingSpeed;
+
+        this.fireSFX = other.fireSFX;
     }
 }

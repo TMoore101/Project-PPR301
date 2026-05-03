@@ -123,8 +123,8 @@ public class Player_WeaponHandler : MonoBehaviour
             {
                 if (input.Player.Shoot.IsPressed()) {
                     weaponManager.Fire(bulletSpawn, eyeSight, currentWeaponData, eyeSight, playerBulletMat, true, cameraController);
-                    audioSource.pitch = UnityEngine.Random.Range(2, 3.5f);
-                    audioSource.clip = currentWeaponType == 1 ? audioClipsAR[UnityEngine.Random.Range(0, audioClipsAR.Length)] : audioClipsShotgun[UnityEngine.Random.Range(0, audioClipsShotgun.Length)];
+                    //audioSource.pitch = UnityEngine.Random.Range(2, 3.5f);
+                    audioSource.clip = currentWeaponData.fireSFX[UnityEngine.Random.Range(0, currentWeaponData.fireSFX.Length)];
                     audioSource.Play();
                 }
             }
@@ -132,8 +132,8 @@ public class Player_WeaponHandler : MonoBehaviour
             {
                 if (input.Player.Shoot.WasPressedThisFrame()) {
                     weaponManager.Fire(bulletSpawn, eyeSight, currentWeaponData, eyeSight, playerBulletMat, true, cameraController);
-                    audioSource.pitch = UnityEngine.Random.Range(2, 3.5f);
-                    audioSource.clip = currentWeaponType == 1 ? audioClipsAR[UnityEngine.Random.Range(0, audioClipsAR.Length)] : audioClipsShotgun[UnityEngine.Random.Range(0, audioClipsShotgun.Length)];
+                    //audioSource.pitch = UnityEngine.Random.Range(2, 3.5f);
+                    audioSource.clip = currentWeaponData.fireSFX[UnityEngine.Random.Range(0, currentWeaponData.fireSFX.Length)];
                     audioSource.Play();
                 }
             }

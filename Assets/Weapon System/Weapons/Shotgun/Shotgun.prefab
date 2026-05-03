@@ -494,6 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7688613996171225750}
+  - component: {fileID: -8534403873207108607}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -518,6 +519,22 @@ Transform:
   - {fileID: 7791398299496512671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8534403873207108607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738857578365704749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db074b1f6dffcce47becae1f93344b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSway
+  maxRotationX: 2
+  maxRotationY: 5
+  inputScale: 0.5
+  smoothTime: 0.08
 --- !u!1 &5764748325067936783
 GameObject:
   m_ObjectHideFlags: 0

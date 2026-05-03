@@ -74,6 +74,7 @@ public class Bullet : MonoBehaviour
 
         GameObject audio = new GameObject("SFX", typeof(AudioSource));
         audio.GetComponent<AudioSource>().spatialBlend = 1;
+        audio.GetComponent<AudioSource>().volume = 0.6f;
         audio.GetComponent<AudioSource>().outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
 
         if (isEnemyBullet)

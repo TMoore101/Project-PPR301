@@ -46,7 +46,7 @@ public class EnemyShooting : MonoBehaviour {
         if (!currentWeaponData.isCooling && !currentWeaponData.hasShot)
         {
             if (Shoot) {
-                audioSource.clip = Gunshots[UnityEngine.Random.Range(0, Gunshots.Length-1)];
+                audioSource.clip = currentWeaponData.fireSFX[UnityEngine.Random.Range(0, currentWeaponData.fireSFX.Length-1)];
                 audioSource.Play();
                 weaponManager.Fire(bulletSpawn, arms, currentWeaponData, eyeSight, enemyBulletMat, false, null);
             }

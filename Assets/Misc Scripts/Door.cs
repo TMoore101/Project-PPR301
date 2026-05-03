@@ -71,7 +71,11 @@ public class Door : MonoBehaviour
 
         // If collider's layer is in the interactable layers, open door
         if ((interactableLayers & (1 << collider.gameObject.layer)) != 0)
+        {
             isOpening = true;
+
+            GetComponent<AudioSource>().Play();
+        }
     }
     //== On Trigger Exit
     private void OnTriggerExit(Collider collider)

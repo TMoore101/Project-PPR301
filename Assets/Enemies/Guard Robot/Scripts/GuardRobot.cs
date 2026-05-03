@@ -39,6 +39,10 @@ public class GuardRobot : MonoBehaviour
     [SerializeField] private Material deactivatedMat;
     private bool deactivationComplete;
     public bool isActive;
+    // Audio variables
+    [SerializeField] private AudioClip[] passiveAudioClips;
+    [SerializeField] private AudioSource voiceBox;
+    private float voiceTimer;
 
     //== On Start
     private void Start()
@@ -61,6 +65,10 @@ public class GuardRobot : MonoBehaviour
 
         // Get player
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // Play voices
+        if (voiceBox != null && isActive)
+            StartCoroutine(PlayVoice());
     }
 
     //== On Update
@@ -173,6 +181,38 @@ public class GuardRobot : MonoBehaviour
         }
     }
 
+    //== Play Voice
+    private IEnumerator PlayVoice()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(3, 6));
+
+            // Pick a random voice clip
+            AudioClip voiceClip = passiveAudioClips[UnityEngine.Random.Range(0, passiveAudioClips.Length)];
+            voiceBox.clip = voiceClip;
+
+            // Choose a random start time
+            float maxStartTime = Mathf.Max(0, voiceClip.length - 2);
+            float startTime = UnityEngine.Random.Range(0, maxStartTime);
+
+            // Set voice clip start time
+            voiceBox.time = startTime;
+            // Play voice clip
+            voiceBox.Play();
+
+            // Decide how long to play clip
+            float playDuration = UnityEngine.Random.Range(2, 5);
+            // Clamp duration so it doesn't exceed clip length
+            playDuration = Mathf.Min(playDuration, voiceClip.length - startTime);
+
+            yield return new WaitForSeconds(playDuration);
+
+            // Stop clip after the duration
+            voiceBox.Stop();
+        }
+    }
+
     //== Activate Agent
     private IEnumerator ActivateAgent()
     {
@@ -209,6 +249,9 @@ public class GuardRobot : MonoBehaviour
         currentState = EnemyState.Waiting;
         waitTimer = Random.Range(minWaitTime, maxwaitTime);
         SetNewPatrolPoint();
+
+        if (voiceBox != null)
+            StartCoroutine(PlayVoice());
     }
 
     //== Set new Patrol Point
