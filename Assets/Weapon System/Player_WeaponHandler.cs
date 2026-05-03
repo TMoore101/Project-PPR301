@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Player_WeaponHandler : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Player_WeaponHandler : MonoBehaviour
 
     //Weapon index variables
     [HideInInspector] public int weaponIndex;
+    private int weaponCategory;
     [HideInInspector] public int currentWeaponType;
 
     //Individual variables
@@ -152,10 +154,47 @@ public class Player_WeaponHandler : MonoBehaviour
             currentWeapon.layer = 11;
             foreach (Transform child in currentWeapon.transform)
                 child.gameObject.layer = 11;
+
+            weaponCategory = 1;
         }
         if (input.Player.Weapon2.WasPressedThisFrame())
         {
             weaponManager.SwapWeapon(currentWeapon, 2, weaponList, weaponIndex, weaponPosition, currentWeaponData, bulletSpawn, gameObject.GetComponent<Player_WeaponHandler>(), currentWeaponType, eyeSight);
+            currentWeapon.layer = 11;
+            foreach (Transform child in currentWeapon.transform)
+                child.gameObject.layer = 11;
+
+            weaponCategory = 2;
+        }
+        if (Mouse.current.scroll.ReadValue().y > 0)
+        {
+            if (weaponCategory == 1)
+            {
+                weaponCategory = 2;
+            }
+            else
+            {
+                weaponCategory = 1;
+            }
+
+            weaponManager.SwapWeapon(currentWeapon, weaponCategory, weaponList, weaponIndex, weaponPosition, currentWeaponData, bulletSpawn, gameObject.GetComponent<Player_WeaponHandler>(), currentWeaponType, eyeSight);
+            currentWeapon.layer = 11;
+            foreach (Transform child in currentWeapon.transform)
+                child.gameObject.layer = 11;
+        }
+        else if (Mouse.current.scroll.ReadValue().y < 0)
+        {
+            
+            if (weaponCategory == 1)
+            {
+                weaponCategory = 2;
+            }
+            else
+            {
+                weaponCategory = 1;
+            }
+
+            weaponManager.SwapWeapon(currentWeapon, weaponCategory, weaponList, weaponIndex, weaponPosition, currentWeaponData, bulletSpawn, gameObject.GetComponent<Player_WeaponHandler>(), currentWeaponType, eyeSight);
             currentWeapon.layer = 11;
             foreach (Transform child in currentWeapon.transform)
                 child.gameObject.layer = 11;
