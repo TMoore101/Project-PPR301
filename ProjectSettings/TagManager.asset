@@ -10,6 +10,7 @@ TagManager:
   - Game Manager
   - Enemy
   - Generator
+  - Destructable
   layers:
   - Default
   - TransparentFX

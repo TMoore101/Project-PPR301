@@ -72,6 +72,8 @@ public class ExplosiveBullet : MonoBehaviour
 
         // Create explosion fx
         GameObject explosion = GameObject.Instantiate(explosionFX, transform.position, Quaternion.identity);
+        // Add camera shake
+        FindFirstObjectByType<CameraShake>().Shake(0.3f, 0.15f);
 
         // Get all objects in explosion range
         Collider[] explosionHits = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -80,6 +82,9 @@ public class ExplosiveBullet : MonoBehaviour
             // If explosion hit the player, damage player
             if (hit.CompareTag("Player"))
                 hit.GetComponentInParent<PlayerHealth>().TakeDamage(damage);
+            // Else, if explosion hit a destructable prop, damage prop
+            else if (hit.CompareTag("Destructable"))
+                hit.GetComponentInParent<DestructableProp>().TakeDamage(damage);
         }
 
         // Destroy audio source
