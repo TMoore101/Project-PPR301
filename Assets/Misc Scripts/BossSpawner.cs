@@ -42,13 +42,11 @@ public class BossSpawner : MonoBehaviour
             if (platform.position == raisedPos && !bossController.isActivated)
             {
                 bossController.isActivated = true;
-                Debug.Log("test2");
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(bossController.transform.position, out hit, 2.0f, NavMesh.AllAreas))
                 {
                     bossController.agent.Warp(hit.position);
                     bossController.agent.enabled = true;
-                    Debug.Log("test1");
                 }
             }
         }
