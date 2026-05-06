@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     // Input variables
     private Player_InputActions input;
+    // UI variables
+    [SerializeField] private GameObject alertPopup;
 
     //== On Start
     private void Start()
@@ -15,8 +17,11 @@ public class GameManager : MonoBehaviour
     //== On Update
     private void Update()
     {
-        //// If player presses pause key, quit application
-        //if (input.Player.Pause.WasPressedThisFrame())
-        //    Application.Quit();
+        // If player presses the open alert keybind, open alert popup
+        if (input.Player.OpenAlert.WasPressedThisFrame())
+            alertPopup.SetActive(true);
+        // If player releases the open alert keybind, close alert popup
+        else if (input.Player.OpenAlert.WasReleasedThisFrame())
+            alertPopup.SetActive(false);
     }
 }
