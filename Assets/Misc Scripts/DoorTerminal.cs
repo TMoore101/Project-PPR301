@@ -33,6 +33,9 @@ public class DoorTerminal : MonoBehaviour
         // If collision object is not the player, return
         if (other.gameObject.layer != 6) return;
 
+        // If already active, return
+        if (isActivated) return;
+
         // Set player in range to true
         playerInRange = true;
 
@@ -74,6 +77,9 @@ public class DoorTerminal : MonoBehaviour
 
             // Play interact sound
             GetComponent<AudioSource>().Play();
+
+            // Hide interact message
+            interactMessage.SetActive(false);
         }
 
         // If terminal is activated, count up
