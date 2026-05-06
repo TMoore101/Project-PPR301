@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,6 +44,8 @@ public class GuardRobot : MonoBehaviour
     [SerializeField] private AudioClip[] passiveAudioClips;
     [SerializeField] private AudioSource voiceBox;
     private float voiceTimer;
+    // Animation variables
+    [SerializeField] public Animator animator;
 
     //== On Start
     private void Start()
@@ -100,11 +103,15 @@ public class GuardRobot : MonoBehaviour
                     currentState = EnemyState.Waiting;
                     waitTimer = Random.Range(minWaitTime, maxwaitTime);
                 }
+
+                animator.SetBool("isMoving", true);
                 break;
             // Waiting
             case EnemyState.Waiting:
                 // Decrease wait timer over time
                 waitTimer -= Time.deltaTime;
+
+                animator.SetBool("isMoving", false);
 
                 // If wait timer has reached the end, set a new patrol point
                 if (waitTimer <= 0)
@@ -134,6 +141,11 @@ public class GuardRobot : MonoBehaviour
                         // Stop shooting
                         enemyShooting.Shoot = false;
                     }
+                }
+
+                if (distanceToPlayer <= stopDistance)
+                {
+                    animator.SetBool("isMoving", false);
                 }
 
                 // Raycast forward

@@ -49,6 +49,8 @@ public class EnemyShooting : MonoBehaviour {
                 audioSource.clip = currentWeaponData.fireSFX[UnityEngine.Random.Range(0, currentWeaponData.fireSFX.Length-1)];
                 audioSource.Play();
                 weaponManager.Fire(bulletSpawn, arms, currentWeaponData, eyeSight, enemyBulletMat, false, null);
+
+                GetComponent<GuardRobot>().animator.SetTrigger("isAttacking");
             }
         }
     }
