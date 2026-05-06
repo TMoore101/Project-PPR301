@@ -157,7 +157,7 @@ MonoBehaviour:
   damage: 0
   projectileLife: 5
   hitSounds:
-  - {fileID: 8300000, guid: e35d33375e3f62f4c8c2ec2b2615dbe4, type: 3}
+  - {fileID: 8300000, guid: e81ed3612abe9f44daa365346b33e1d5, type: 3}
   audioSource: {fileID: 2538317335242480675}
   explosionRadius: 0.65
   explosionFX: {fileID: 2786880185902129315, guid: 09fd2416305a8014ca85c1a1fabdc6ed, type: 3}

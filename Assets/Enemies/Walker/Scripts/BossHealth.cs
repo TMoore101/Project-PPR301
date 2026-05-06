@@ -7,7 +7,7 @@ public class BossHealth : MonoBehaviour
     // General variables
     [SerializeField] private string bossName;
     [SerializeField] private float maxHealth;
-    private float health;
+    [HideInInspector] public float health;
 
     // Mission variables
     [SerializeField] private DoorTerminal nextMissionTerminal;
@@ -17,6 +17,14 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private GameObject healthField;
 
+    // Animation variables
+    private Animator animator;
+    private bool isDead;
+
+    // Audio variables
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip deathClip;
+
     //== On Start
     private void Start()
     {
@@ -25,6 +33,12 @@ public class BossHealth : MonoBehaviour
 
         // Set health to max health
         health = maxHealth;
+
+        // Get animator
+        animator = GetComponent<Animator>();
+
+        // Get audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
     //== On Update
@@ -41,10 +55,13 @@ public class BossHealth : MonoBehaviour
         health -= damage;
 
         // If health reached zero, destroy boss
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
-            // Destroy boss
-            Destroy(gameObject);
+            isDead = true;
+            //// Destroy boss
+            //Destroy(gameObject);
+            // Die
+            animator.SetTrigger("Die");
 
             // Get mission manager
             MissionManager missionManager = GameObject.FindGameObjectWithTag("MissionManager").GetComponent<MissionManager>();
@@ -56,6 +73,10 @@ public class BossHealth : MonoBehaviour
 
             // Disable health slider
             healthField.SetActive(false);
+
+            // Play death sound effect
+            audioSource.clip = deathClip;
+            audioSource.Play();
         }
     }
 }

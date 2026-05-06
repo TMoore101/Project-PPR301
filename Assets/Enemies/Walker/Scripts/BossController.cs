@@ -11,6 +11,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     // Attack variables
     [SerializeField] private float stopDistance;
+    // Animation variables
+    private Animator animator;
 
     //== On Start
     private void Start()
@@ -26,6 +28,9 @@ public class BossController : MonoBehaviour
 
         // Set agent stopping distance
         agent.stoppingDistance = stopDistance;
+
+        // Get animator
+        animator = GetComponent<Animator>();
     }
 
     //== On Update
@@ -33,12 +38,13 @@ public class BossController : MonoBehaviour
     {
         // If not activated, don't do anything
         if (!isActivated) return;
+        if (GetComponent<BossHealth>().health <= 0) return;
 
         // Rotate towards target
         RotateTowardsTarget();
 
         // Move towards player
-        agent.SetDestination(player.position);
+        //agent.SetDestination(player.position);
     }
 
     //== Rotate Towards Target
@@ -61,6 +67,12 @@ public class BossController : MonoBehaviour
                 targetRotation,
                 rotationSpeed * Time.deltaTime
             );
+
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 }

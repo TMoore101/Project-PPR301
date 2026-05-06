@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Volume postProcessVolume;
     private Vignette healthVignette;
     [SerializeField] private float maxVignetteIntensity = 0.5f;
+    [SerializeField] private AudioClip hurtAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         timeSinceCombat = 0;
+
+        if (Random.Range(0, 5) == 0)
+        {
+            AudioSource.PlayClipAtPoint(hurtAudio, transform.position);
+        }
 
         if(currentHealth <= 0)
         {

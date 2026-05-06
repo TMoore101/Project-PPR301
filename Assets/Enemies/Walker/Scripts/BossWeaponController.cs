@@ -14,6 +14,11 @@ public class BossWeaponController : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private LayerMask ignoreLayer;
+    // Animation variables
+    private Animator animator;
+    // Audio variables
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip firingClip;
 
     //== On Start
     private void Start()
@@ -23,6 +28,12 @@ public class BossWeaponController : MonoBehaviour
 
         // Get player
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // Get animator
+        animator = GetComponent<Animator>();
+
+        // Get audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
     //== On Update
@@ -44,6 +55,13 @@ public class BossWeaponController : MonoBehaviour
             // Else, fire a blast
             else
             {
+                // Play shoot animation
+                animator.SetTrigger("Shoot");
+
+                // Play firing sound
+                audioSource.clip = firingClip;
+                audioSource.Play();
+
                 // Reset fire rate timer
                 fireRateTimer = rateOfFire;
 
